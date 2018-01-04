@@ -36,8 +36,8 @@
 		private function setData($data = array()) 
 		{
 
-			foreach ($this->options["data"] as $key => $value) {
-				$this->tpl->assing($key, $value);
+			foreach ($data as $key => $value) {
+				$this->tpl->assign($key, $value);
 			}
 
 		}
