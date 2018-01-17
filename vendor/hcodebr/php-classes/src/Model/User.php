@@ -12,6 +12,7 @@
 		const SECRET  = "HcodePhp7_Secret";
 		const ERROR   = "UserError";
 		const ERROR_REGISTER = "UserErrorRegister";
+		const SUCCESS = "UserSuccess";
 
 		public static function getFromSession()
 		{
@@ -165,16 +166,26 @@
 			$this->setData($data);
 		}
 
-		public function update()
+		public function update(/*$passwordHash = true*/)
 		{
 
 			$sql = new Sql();
+
+			/*if ($passwordHash) {
+
+				$password = User::getPasswordHash($this->getdespassword());
+			
+			} else {
+			
+				$password = $this->getdespassword();
+			
+			}*/
 
 			$results = $sql->select("CALL sp_usersupdate_save(:iduser, :desperson, :deslogin, :despassword, :desemail, :nrphone, :inadmin)", array(
 				":iduser"=>$this->getiduser(),
 				":desperson"=>utf8_decode($this->getdesperson()),
 				":deslogin"=>$this->getdeslogin(),
-				":despassword"=>User::getPasswordHash($this->getdespassword()),
+				":despassword"=>$this->getpassword(),
 				":desemail"=>$this->getdesemail(),
 				":nrphone"=>$this->getnrphone(),
 				":inadmin"=>$this->getinadmin()
@@ -347,6 +358,31 @@
 		{
 
 			$_SESSION[User::ERROR] = NULL;
+
+		}
+
+		public static function setSuccess($msg)
+		{
+
+			$_SESSION[User::SUCCESS] = $msg;
+
+		}
+
+		public static function getSuccess()
+		{
+
+			$msg = (isset($_SESSION[User::SUCCESS]) && $_SESSION[User::SUCCESS]) ? $_SESSION[User::SUCCESS] : '';
+
+			User::clearSuccess();
+
+			return $msg;
+
+		} 
+
+		public static function clearSuccess()
+		{
+
+			$_SESSION[User::SUCCESS] = NULL;
 
 		}
 
