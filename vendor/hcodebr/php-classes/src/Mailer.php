@@ -35,6 +35,8 @@
 			//Tell PHPMailer to use SMTP
 			$this->mail->isSMTP();
 
+			$this->mail->CharSet = 'UTF-8';
+
 			$this->mail->SMTPOptions = array(
 		        'ssl' => array(
 		            'verify_peer' => false,
