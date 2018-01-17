@@ -166,12 +166,12 @@
 			$this->setData($data);
 		}
 
-		public function update(/*$passwordHash = true*/)
+		public function update($passwordHash = true, $inadmin = true)
 		{
 
 			$sql = new Sql();
 
-			/*if ($passwordHash) {
+			if($passwordHash) {
 
 				$password = User::getPasswordHash($this->getdespassword());
 			
@@ -179,13 +179,23 @@
 			
 				$password = $this->getdespassword();
 			
-			}*/
+			}
+
+			if($inadmin) {
+
+				$login = $this->getdeslogin();
+
+			} else {
+
+				$login = $this->getdesemail();
+
+			}
 
 			$results = $sql->select("CALL sp_usersupdate_save(:iduser, :desperson, :deslogin, :despassword, :desemail, :nrphone, :inadmin)", array(
 				":iduser"=>$this->getiduser(),
 				":desperson"=>utf8_decode($this->getdesperson()),
-				":deslogin"=>$this->getdeslogin(),
-				":despassword"=>$this->getpassword(),
+				":deslogin"=>$login,
+				":despassword"=>$password,
 				":desemail"=>$this->getdesemail(),
 				":nrphone"=>$this->getnrphone(),
 				":inadmin"=>$this->getinadmin()

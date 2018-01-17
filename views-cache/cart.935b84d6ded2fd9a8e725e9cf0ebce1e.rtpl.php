@@ -19,7 +19,7 @@
                 <div class="product-content-right">
                     <div class="woocommerce">
 
-                        <form action="/checkout">
+                        <form action="/checkout" id="form">
                             <?php if( $error != '' ){ ?>
 
                             <div class="alert alert-danger" role="alert">
@@ -130,3 +130,4 @@
         </div>
     </div>
 </div>
+
