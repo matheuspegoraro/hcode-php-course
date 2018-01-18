@@ -320,6 +320,8 @@
 			$this->setvlsubtotal($totals['vlprice']);
 			$this->setvltotal($totals['vlprice'] + $this->getvlfreight());
 
+			return $this->getvltotal();
+
 		}
 
 	}
