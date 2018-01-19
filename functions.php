@@ -12,6 +12,13 @@
 
 	}
 
+	function formatDate($date)
+	{
+
+		return date('d/m/Y', strtotime($date));
+
+	}
+
 	function checkLogin($inadmin = true)
 	{
 
@@ -47,6 +54,13 @@
 		$totals = $cart->getProductsTotals();
 
 		return formatPrice($totals["vlprice"]);
+
+	}
+
+	function getTotalPriceProduct($idproduct, $nrqdt)
+	{
+
+		return $idproduct*$nrqdt;
 
 	}
 
