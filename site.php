@@ -169,6 +169,7 @@
 		}
 
 		if(!$address->getdesaddress()) $address->setdesaddress('');
+		if(!$address->getdesnumber()) $address->setdesnumber('');
 		if(!$address->getdesdistrict()) $address->setdesdistrict('');
 		if(!$address->getdesstate()) $address->setdesstate('');
 		if(!$address->getdescity()) $address->setdescity('');
@@ -544,7 +545,7 @@
 
 		// DADOS DO SEU CLIENTE
 		$dadosboleto["sacado"] = $order->getdesperson();
-		$dadosboleto["endereco1"] = $order->getdesaddress()." ".$order->getdesdistrict();
+		$dadosboleto["endereco1"] = $order->getdesaddress().", ".$order->getdesnumber()." ".$order->getdesdistrict();
 		$dadosboleto["endereco2"] = $order->getdescity()." - ".$order->getdesstate()." - ".$order->getdescountr()." -  CEP: ".$order->getdeszipcode();
 
 		// INFORMACOES PARA O CLIENTE
